@@ -1,0 +1,317 @@
+[
+  {
+    "State": "Delhi",
+    "Hospital": "Rajiv Gandhi Superspeciality Hospital",
+    "Beds": 450,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Delhi",
+    "Hospital": "Lok Nayak/GB Pant",
+    "Beds": "Sealed",
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Delhi",
+    "Hospital": "Guru Tegh Bahadur Hospital",
+    "Beds": "Sealed",
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Delhi",
+    "Hospital": "Dr Baba Saheb Ambedkar Hospital",
+    "Beds": 500,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Delhi",
+    "Hospital": "Deen Dayal Upadhyay Hospital",
+    "Beds": "N/A",
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Delhi",
+    "Hospital": "Sir Ganga Ram Kolmet Hospital",
+    "Beds": 42,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Delhi",
+    "Hospital": "Max hospital in Saket",
+    "Beds": 328,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Delhi",
+    "Hospital": "Apollo Hospital",
+    "Beds": 50,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Bhatia Hospital",
+    "Beds": 200,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Breach Candy Hospital",
+    "Beds": 201,
+    "info": "Mumbai's Breach Candy hospital stops new admission after nurse, technician found Covid positive\nApril 9",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Hinduja Hospital�",
+    "Beds": "42(all occupied)",
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Spandan Hospital",
+    "Beds": "Sealed",
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Seven Hills Hospital",
+    "Beds": 1500,
+    "info": "350 quarantine beds",
+    "RampingBeds": 1300
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Seven Hills Reliance",
+    "Beds": 42,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Bombay Hospital",
+    "Beds": "",
+    "info": "N/A",
+    "RampingBeds": 200
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Saint Elizabeth",
+    "Beds": "",
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Reliance Foundation(plasma therapy)",
+    "Beds": 50,
+    "info": "N/A",
+    "RampingBeds": 180
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Bhatia Hospital",
+    "Beds": "",
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Jaslok Hospital",
+    "Beds": "",
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Wockhardt Hospital",
+    "Beds": 350,
+    "info": 38,
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Global Hospital",
+    "Beds": 10,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Jer Bai",
+    "Beds": "",
+    "info": "70 ventil.",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "SL Raheja",
+    "Beds": "",
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Lilavati Hospital",
+    "Beds": 1,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Bandra Holy",
+    "Beds": 1,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Guru Nanak",
+    "Beds": "99(for cops/staff)",
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "KJ Somaiya",
+    "Beds": 500,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "SRV Hospital",
+    "Beds": 15,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Dr Balabhai nanavati",
+    "Beds": 350,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "HJ Doshi",
+    "Beds": "N/A",
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Dr LH hiranandani",
+    "Beds": 4,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Kokilaben Dhirubhai Ambani Hospital and Medical Research Institute",
+    "Beds": 750,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Fortis Hospital",
+    "Beds": 315,
+    "info": "1000tests/day",
+    "RampingBeds": 25
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Shushrusha Hospital",
+    "Beds": 73,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Dr Babasaheb",
+    "Beds": "N/A",
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "St. George",
+    "Beds": 110,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Hinduhridaysamrat Balasaheb Thackerey Medical College & RN Cooper Municipal Hospital",
+    "Beds": 11,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Rajawadi Hospital",
+    "Beds": "N/A",
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Kurla Bhabha",
+    "Beds": 100,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Khushedji Behramji",
+    "Beds": "N/A",
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "KEM Hospital",
+    "Beds": 6,
+    "info": "N/A",
+    "RampingBeds": 40
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Kasturba Hospital",
+    "Beds": 12,
+    "info": "100 isolation ward",
+    "RampingBeds": 100
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Mumbai Port Trust Hospital",
+    "Beds": 50,
+    "info": 500,
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Bharat Ratna Dr Babasaheb Ambedkar Memorial Hospital",
+    "Beds": 400,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  },
+  {
+    "State": "Mumbai",
+    "Hospital": "Jagjivan Ram",
+    "Beds": 10,
+    "info": "N/A",
+    "RampingBeds": "N/A"
+  }
+]

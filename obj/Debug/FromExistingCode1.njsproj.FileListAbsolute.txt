@@ -1,0 +1,3 @@
+C:\Users\Batman\Downloads\node_passport_login-master\obj\Debug\FromExistingCode1.njsproj.CoreCompileInputs.cache
+C:\Users\Batman\Downloads\node_passport_login-master\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Users\Batman\Downloads\node_passport_login-master\obj\Debug\FromExistingCode1.njsprojAssemblyReference.cache
