@@ -14,6 +14,11 @@
     integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
     crossorigin="anonymous"
     ></script>
+  
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
 </head>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -27,7 +32,8 @@
       </div>
       <div class="modal-body">
        <p><%= typeof msg != 'undefined' ? msg+" report(s) under review. You will recieve an email regarding the same." : 'You have not submitted any complaints' %></p>
-       <p><small>Please submit the form carefully and under the right category. Only one report is allowed per user. For more information <a>Click Here</a></small></p>
+       <p><small>Please submit the form carefully and under the correct category.
+       Only one report is allowed per user uptill it has been verified. For more information <a>Click Here</a></small></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -48,7 +54,22 @@
   </div>
 
 </div>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <div class="ui-widget" style="z-index:9999">
+      <form action="/search" method="POST" class="form-inline my-2 my-lg-0" id="chutiya" style="width:90%;display:flex;flex-direction: row;flex-flow:row;">
+        <input style="width:90%" class="form-control mr-sm-2" id="hospital_search" type="search" placeholder="Search Hospital" aria-label="Search"/>
+        <button  id="bakwas" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+    <p>Didn't find your hospital, report a problem to us...</p>
+    <small>Information here is either from recognized news or from authentic crowdsourced information</small>
 
+  </div>
+</div>
+<div id="info"   style="">
+  
+</div>
 
 <div class="accordion" id="accordionExample">
   <div class="card">
@@ -235,4 +256,111 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $(document).on('click','#rectify',function(ev)  {
+  ev.preventDefault();
+  var str1 = $("#hospital_search"). val();
+  console.log(str1);
+  //console.log("rectify");
 
+  url="/rectify/";
+  $.ajax({
+  type: "GET",
+  url:url,
+  data: {q: str1},
+  success: function(res){
+  if(str!=""){
+
+  }
+  },
+  error: function(err){
+  console.log("rectify error:"+err);
+  }
+
+
+  });
+  })
+
+
+
+  $('#bakwas').click(function(ev)  {
+  ev.preventDefault();
+  var str = $("#hospital_search"). val();
+  //console.log(str);
+  $("#info").empty();
+  console.log("clicked");
+  url="/search/";
+  $.ajax({
+  type: "GET",
+  url:url,
+  data: {q: str},
+  dataType: "jsonp",
+  success: function(res){
+  //now we can access stuff off res
+  if(str!=""){
+  $('#info').append(`
+  <div class="jumbotron jumbotron-fluid">
+  <div class="card" style="width: 90%;">
+    <div class="card-body">
+      <h5 id="hospital-rectify" class="card-title">${res[0].Hospital}</h5>
+      <p class="card-text">Info:${res[0].info}</p>
+      <p class="card-text">Beds to be increased:${res[0].Beds}</p>
+      <p class="card-text">ICU(s):${res[0].ICU}</p>
+      <p class="card-text">Ventilators:${res[0].Ventilators}</p>
+      <p>
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+          Refusal cases
+        </button>
+      </p>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          <p class="card-text">
+            <small>
+              ${res[0].Refusals}<small>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+    </div>
+
+  `);
+  }
+  },
+  error: function(err){
+  console.log("ajax error:"+err);
+  }
+
+
+  });
+  });
+  $(function () {
+  $("#hospital_search").autocomplete({
+  source: function (request, response) {
+  $.ajax({
+  url: "/autocomplete",
+  type: "GET",
+  data: request,  // request is the value of search input
+  success: function (data) {
+  var dataArray = [];
+
+  for(var i in data){
+  dataArray.push(data[i].Hospital+","+data[i].State);}
+  response(dataArray);
+  //console.log(data);
+  },
+  error: function(err){
+  console.log(err);
+  }
+  });
+  },
+
+  select: function( event, ui ) {
+  $( "#hospital_search" ).val( ui.item.label );
+
+  return false;
+  }
+  });//autoc
+  });//func
+</script>

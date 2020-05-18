@@ -1,7 +1,23 @@
 const express = require('express');
 const router = express.Router();
 var cors = require('cors');
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+    host: 'sql9.freemysqlhosting.net',
+    user: 'sql9341600',
+    password: 'eriBREhXkF',
+    database: 'sql9341600'
 
+});
+
+connection.connect(function (err) {
+    if (err) {
+        console.error('error connecting: ' + err.stack);
+        return;
+    }
+
+    console.log('connected as id ' + connection.threadId);
+});
 router.use(cors());
 const User = require('../models/User');
 
@@ -21,6 +37,42 @@ router.get('/dashboard', ensureAuthenticated, function (req, res) {
     res.render('dashboard', {
         msg: msg,
         user: req.user
+    })
+});
+router.get('/autocomplete/', function (req, res) {
+    //SELECT `Hospital` FROM `hospitals` WHERE `Hospital` LIKE '%a%'
+    var results = [];
+    var regex = new RegExp(req.query.term, 'i');
+
+    connection.query('SELECT `Hospital`,`State` FROM `hospitals` WHERE `Hospital` LIKE + "%' + req.query.term + '%"', function (err, rows, fields) {
+        if (err) throw err;
+        if (rows && rows.length && rows.length > 0) {
+            //console.log(rows);
+            for (i = 0; i < rows.length; i++) {
+                results.push(rows[i]);
+            }
+            res.jsonp(results);
+        }
+
+    })
+
+});
+router.get('/search/', function (req, res) {
+    var results = [];
+    console.log(typeof req.query.q);
+
+    connection.query('SELECT  * FROM `hospitals` WHERE `Hospital` LIKE + "%' + ((req.query.q).split(","))[0] + '%"', function (err, rows, fields) {
+        if (err) console.log(err);
+        if (rows && rows.length && rows.length > 0) {
+            console.log(rows);
+            for (i = 0; i < rows.length; i++) {
+                results.push(rows[i]);
+                console.log(rows[i]);
+            }
+            res.jsonp(results);
+
+        }
+
     })
 });
 //UserDrinks.update({}, { $rename: { "creator" : "user" } }, { multi: true }, callback)
