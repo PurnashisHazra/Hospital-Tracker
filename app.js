@@ -9,10 +9,10 @@ var cors = require('cors');
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-    host: 'sql12.freesqldatabase.com',
-    user: 'sql12339564',
-    password: '2gbdb7TVIV',
-    database: 'sql12339564'
+    host: 'sql9.freemysqlhosting.net',
+    user: 'sql9341600',
+    password: 'eriBREhXkF',
+    database: 'sql9341600'
 
 });
 
