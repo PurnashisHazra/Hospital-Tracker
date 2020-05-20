@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
   <link rel="icon" type="image" href="https://i.imgur.com/43jJjSE.jpg">
+  
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,20 +23,21 @@
       crossorigin="anonymous"
     ></script>
     <title>Hospital Tracker</title>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
               <a class="navbar-brand" href="/">
     <img src="https://i.imgur.com/43jJjSE.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
     Hospital Tracker
   </a>
 
   
-              <ul class="navbar-nav mr-auto">
-                <a href="/users/register" class="btn btn-primary btn-block mb-2">Register</a>
-              <span>
-                <a href="/users/login" class="btn btn-secondary btn-block">Login</a>
-              </span>
-              </ul>
-            
+
+   <ul class="navbar-right justify-content-end">
+      <li class="nav-item btn btn-light"><a href="/users/register"><span><i class="fa fa-user-plus" aria-hidden="true"></i>
+</span> Sign Up</a></li>
+      <li class="nav-item btn btn-light"><a href="/users/login"><span><i class="fa fa-sign-in" aria-hidden="true"></i>
+</span> Login</a></li>
+    </ul>
+
                 
         </nav>
   </head>
@@ -119,12 +121,11 @@ ul, ol {
             
           </div>
         </div>
-        <!--div class="row no-gutters social-container">
-          <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-facebook"></span><span>About</span></a></div>
-          <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-instagram"></span><span>Contact</span></a></div>
-          <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-twitter"></span><span>Donate</span></a></div>
-          <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-youtube-play"></span><span>Share</span></a></div>
-        </div-->
+        <div class="row no-gutters social-container">
+          <div class="col"><a class="social-inner" href="/about"><span class="icon mdi mdi-facebook"></span><span>About</span></a></div>
+          <div class="col"><a class="social-inner" href="/contact"><span class="icon mdi mdi-instagram"></span><span>Contact</span></a></div>
+          <div class="col"><a class="social-inner" href="/donate"><span class="icon mdi mdi-twitter"></span><span>Donate</span></a></div>
+        </div>
       </footer>
  
 </html>

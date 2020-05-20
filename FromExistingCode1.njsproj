@@ -16,6 +16,8 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Content Include="public\finphone.png" />
+    <Content Include="public\HospitalTracker %284%29.apk" />
     <Content Include="public\hospjson.json" />
     <Content Include="config\JavaScript.js">
       <SubType>Code</SubType>
@@ -38,12 +40,30 @@
     <Content Include="node_passport_login-master\package.json" />
     <Content Include="node_passport_login-master\README.md" />
     <Content Include="node_passport_login-master\app.js" />
+    <Content Include="routes\about.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\contact.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\donate.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="routes\index.js" />
     <Content Include="routes\testtable.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="routes\users.js" />
+    <Content Include="views\about.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\contact.ejs">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\dashboard.ejs" />
+    <Content Include="views\donate.ejs">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\layout.ejs" />
     <Content Include="views\login.ejs" />
     <Content Include="views\register.ejs" />

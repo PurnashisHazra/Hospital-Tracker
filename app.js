@@ -117,7 +117,14 @@ app.use(function(req, res, next) {
 // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
+app.use('/about', require('./routes/about.js'));
+app.use('/donate', require('./routes/donate.js'));
+app.use('/contact', require('./routes/contact.js'));
+app.use(express.static('./public'))
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
+app.get('/app/', (req, res) => {
+    res.download('./public/HospitalTracker.apk');
+})
