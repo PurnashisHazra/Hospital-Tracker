@@ -40,6 +40,9 @@
     <Content Include="node_passport_login-master\package.json" />
     <Content Include="node_passport_login-master\README.md" />
     <Content Include="node_passport_login-master\app.js" />
+    <Content Include="public\robots.txt">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="routes\about.js">
       <SubType>Code</SubType>
     </Content>
@@ -50,10 +53,14 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="routes\index.js" />
+    <Content Include="routes\robots.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="routes\testtable.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="routes\users.js" />
+    <Content Include="public\sitemap.xml" />
     <Content Include="views\about.ejs">
       <SubType>Code</SubType>
     </Content>
