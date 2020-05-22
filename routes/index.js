@@ -7,7 +7,6 @@ var connection = mysql.createConnection({
     user: 'sql9341600',
     password: 'eriBREhXkF',
     database: 'sql9341600'
-
 });
 
 connection.connect(function (err) {
@@ -20,9 +19,7 @@ connection.connect(function (err) {
 });
 router.use(cors());
 const User = require('../models/User');
-
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
-
 // Welcome Page
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
 // Dashboard
@@ -44,7 +41,7 @@ router.get('/autocomplete/', function (req, res) {
     var results = [];
     var regex = new RegExp(req.query.term, 'i');
 
-    connection.query('SELECT `Hospital`,`State` FROM `hospitals` WHERE `Hospital` LIKE + "%' + req.query.term + '%"', function (err, rows, fields) {
+    connection.query('SELECT `Hospital`,`State` FROM `hospitals` WHERE `Hospital` LIKE + "%' + req.query.term + '%" OR `State`  LIKE + "%' + req.query.term + '%" ', function (err, rows, fields) {
         if (err) throw err;
         if (rows && rows.length && rows.length > 0) {
             //console.log(rows);

@@ -47,10 +47,10 @@ behaviour can be claimed by the people who practice law or are at a place of pow
   </div>
 </div>
 <div style="display:flex; flex-direction: row">
-<h1>Hello </h1>
+<h1>Hello <%=user.name%> </h1>
   <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <%=user.name%> <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       <i class="fa fa-user-circle-o" aria-hidden="true"></i>
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <a id="complaint_status" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Complaint status</a>
