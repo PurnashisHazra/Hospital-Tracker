@@ -324,9 +324,12 @@ behaviour can be claimed by the people who practice law or are at a place of pow
   if(str!=""){
   $('#info').append(`
   
-  <div class="card" style="width: 90%;">
+  <div class="card" >
     <div class="card-body">
+      <div style="display:flex; flex-direction: row">
       <h5 id="hospital-rectify" class="card-title">${res[0].Hospital}</h5>
+      <a href='${"https://www.google.com/maps/search/?api=1&query="+res[0].Hospital+","+res[0].State}'><i  class="fa fa-location-arrow" aria-hidden="true"> Location</i></a>
+      </div>
       <p class="card-text">Info:${res[0].info}</p>
       <p class="card-text">Beds to be increased:${res[0].Beds}</p>
       <p class="card-text">ICU(s):${res[0].ICU}</p>

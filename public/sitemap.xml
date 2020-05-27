@@ -1,36 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset>
-<url>
-  <loc>http://www.thehospitaltracker.com/</loc>
-  <lastmod>2020-05-21T10:23:07+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>http://www.thehospitaltracker.com/users/register</loc>
-  <lastmod>2020-05-21T10:23:07+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>http://www.thehospitaltracker.com/users/login</loc>
-  <lastmod>2020-05-21T10:23:07+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>http://www.thehospitaltracker.com/about</loc>
-  <lastmod>2020-05-21T10:23:07+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>http://www.thehospitaltracker.com/contact</loc>
-  <lastmod>2020-05-21T10:23:07+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>http://www.thehospitaltracker.com/donate</loc>
-  <lastmod>2020-05-21T10:23:07+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-
+<!--	created with www.mysitemapgenerator.com	-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.thehospitaltracker.com/</loc>
+    <lastmod>2020-05-27T12:14:41+01:00</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.thehospitaltracker.com/users/register</loc>
+    <lastmod>2020-05-27T12:14:42+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.thehospitaltracker.com/users/login</loc>
+    <lastmod>2020-05-27T12:14:45+01:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.thehospitaltracker.com/about</loc>
+    <lastmod>2020-05-27T12:14:45+01:00</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.thehospitaltracker.com/contact</loc>
+    <lastmod>2020-05-27T12:14:49+01:00</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.thehospitaltracker.com/donate</loc>
+    <lastmod>2020-05-27T12:14:49+01:00</lastmod>
+    <priority>1.0</priority>
+  </url>
 </urlset>
-

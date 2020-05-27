@@ -78,7 +78,7 @@ behaviour can be claimed by the people who practice law or are at a place of pow
    $(document).on('click','#rectify',function(ev)  {
   ev.preventDefault();
   var str1 = $("#hospital_search"). val();
-  console.log(str1);
+  //console.log(str1);
 //console.log("rectify"); 
                                                                                                        
 url="/rectify/";
@@ -92,14 +92,14 @@ url="/rectify/";
       }
       },
   error: function(err){
-  console.log("rectify error:"+err);
+  console.log("data error:"+err);
   }
       
     
   });
 })
 
-  
+  //var s = "https://www.google.com/maps/search/?api=1&query="+document.getElementById("#hospital_search"). val()
   
   $('#bakwas').click(function(ev)  {
   ev.preventDefault();
@@ -119,7 +119,8 @@ url="/search/";
       $('#info').append(`
       <div class="card mb-3" >
   <div class="card-body">
-    <h5 id="hospital-rectify" class="card-title">${res[0].Hospital}</h5>
+    <h5 id="hospital-rectify" class="card-title">${res[0].Hospital}</h5><a href='${"https://www.google.com/maps/search/?api=1&query="+res[0].Hospital+","+res[0].State}'><i  class="fa fa-location-arrow" aria-hidden="true">Locate</i>
+</a>
     <p class="card-text">Info:${res[0].info}</p>
         <p class="card-text">Beds to be increased:${res[0].Beds}</p>
     <p class="card-text">ICU(s):${res[0].ICU}</p>
