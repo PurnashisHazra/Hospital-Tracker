@@ -22,36 +22,37 @@
    <?xml version="1.0" encoding="utf-8"?>
 
 </head>
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid" style="margin-bottom: 0">
   <div class="container">
-    <h4>Tracking Healthcare</h4>
+    <h4>The Hospital Search Engine</h4>
+      <h6>Tracking Healthcare</h6>
      <div class="ui-widget" style="z-index:9999">
  <form action="/search" method="POST" class="form-inline my-2 my-lg-0" id="chutiya" style="width:90%;display:flex;flex-direction: row;flex-flow:row;">
       <input style="width:90%" class="form-control mr-sm-2" id="hospital_search" type="search" placeholder="Search Hospital" aria-label="Search"/>
       <button  id="bakwas" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
  </form>  
-  
+ 
      </div>
-  <p>Get information on your hospital - Refusals,Beds and much more...</p>
+  <p>Get information on your hospital - Location, Refusals, Beds and authentic user complaints</p>
     <small href="/about">Information here is either from recognized news or from authentic crowdsourced information</small>
-
   </div>
 </div>
 
 <div class="container-fluid" >
-
 <div id="info" >
 
 </div>
-<div class="card mb-3" style="max-width:100%;">
+</div>
+<img  src="/HT-PixTeller (3).png" class="card-img" alt="ss"/>  
+<div class="card mb-0" >
       <div class="row no-gutters">
         <div class="col-md-4">
-          <img src="https://i.imgur.com/SqQWbJb.png" class="card-img" alt="ss">
+          <img src="/phonefin2.png" class="card-img" alt="ss">
     </div>
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title" href="/app">The Hospital Tracker</h5>
-            <p class="card-text">A handy tool to get your hospital's information.</p>
+            <p class="card-text">Emergency? Compare Hospitals On the Go</p>
             <p class="card-text">
               <a href="/app">
                 <i class="fa fa-download" aria-hidden="true"></i> Install Our App
@@ -71,7 +72,7 @@ behaviour can be claimed by the people who practice law or are at a place of pow
 
         </div>
       </div>
-    </div></div>
+    </div>
 
 
 <script type="text/javascript">
@@ -101,13 +102,13 @@ url="/rectify/";
 
   //var s = "https://www.google.com/maps/search/?api=1&query="+document.getElementById("#hospital_search"). val()
   
-  $('#bakwas').click(function(ev)  {
+  $('#bakwas').click(function(ev){
   ev.preventDefault();
-  var str = $("#hospital_search"). val();
+  var str = $("#hospital_search").val();
   //console.log(str);
   $("#info").empty();
-console.log("clicked");
-url="/search/";
+  console.log("clicked");
+  url="/search/";
   $.ajax({
     type: "GET",
     url:url,
@@ -117,26 +118,43 @@ url="/search/";
       //now we can access stuff off res
       if(str!=""){
       $('#info').append(`
-      <div class="card mb-3" >
-  <div class="card-body">
-    <h5 id="hospital-rectify" class="card-title">${res[0].Hospital}</h5><a href='${"https://www.google.com/maps/search/?api=1&query="+res[0].Hospital+","+res[0].State}'><i  class="fa fa-location-arrow" aria-hidden="true">Locate</i>
+      <div class="card " >
+  <div class="card-body" style="padding: 2%">
+    <h5 id="hospital-rectify" class="card-title">${res[0].Hospital}<span>
+     ${(() => {
+      if (res[0].score > 500) {
+        return `<span class="badge badge-success">Best</span>`
+      } else if(res[0].score >250){
+        return `<span class="badge badge-warning">Good</span>`
+      }else {
+        return `<span class="badge badge-danger">Warning</span>`
+      }
+    })()}
+  </span>
+    <a class="btn btn-light" href='${"https://www.google.com/maps/search/?api=1&query="+res[0].Hospital+","+res[0].State}'><i class="fa fa-location-arrow" aria-hidden="true">Locate</i>
 </a>
-    <p class="card-text">Info:${res[0].info}</p>
-        <p class="card-text">Beds to be increased:${res[0].Beds}</p>
-    <p class="card-text">ICU(s):${res[0].ICU}</p>
-    <p class="card-text">Ventilators:${res[0].Ventilators}</p>
+    </h5>  
   <p>
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     Refusal cases
   </button>
-</p>
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
 <p class="card-text"><small>${res[0].Refusals}<small></p>
 </div>
 </div>
+</p>
+  <ul class="list-group">
+  <li class="list-group-item list-group-item-info"><h5>Beds: ${res[0].Beds}</h5></li>
+  <li class="list-group-item list-group-item-info"><h5>Info:${res[0].info}</h5></li>
+  <li class="list-group-item list-group-item-info"><h5>ICU(s):${res[0].ICU}</h5></li>
+  <li class="list-group-item list-group-item-info"><h5>Ventilators:${res[0].Ventilators}</h5></li>
+  
+</ul>
+ 
+  
+<div id="suggestion" ></div>
 
-    
   <p><em>This information is extracted from the news and authenticated crowdsourced information</em></p>
     <a  href="/users/login"  class="btn btn-primary">Rectify data?</a>
     <a  href="/users/login"  class="btn btn-success">Submit a Problem</a>
@@ -154,6 +172,91 @@ url="/search/";
     
   });
 });
+
+/////////
+$('#bakwas').click(function(ev){
+  ev.preventDefault();
+  alert("Not available or non-public details are put as ZERO(0). example: ICU(s):0, This doesn't necessarily mean there are no ICUs");
+  var str = $("#hospital_search").val();
+  //console.log(str);
+  $("#suggestion").empty();
+  console.log("suggest");
+  url="/suggestion/";
+  $.ajax({
+    type: "GET",
+    url:url,
+    data: {q: str},
+    dataType: "jsonp",
+    success: function(res){
+      //now we can access stuff off res
+      if(str!=""){
+      $('#suggestion').append(`
+
+<ul class="list-group ">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+    <h6>Suggested hospitals in your city<h6>
+    <span class="badge badge-primary badge-pill">4</span>
+  </li>
+  <li class="list-group-item list-group-item-success">
+ <h6> ${res[0].Hospital} ${(() => {
+      if (res[0].score > 500) {
+        return `<span class="badge badge-success">Best</span>`
+      } else if(res[0].score >250){
+        return `<span class="badge badge-warning">Good</span>`
+      }else {
+        return `<span class="badge badge-danger">Warning</span>`
+      }
+    })()}<span class="badge badge-light">Beds: ${res[0].Beds}</span></h6>
+</li>
+  <li class="list-group-item list-group-item-success">
+  <h6>${res[1].Hospital} ${(() => {
+      if (res[1].score > 500) {
+        return `<span class="badge badge-success">Best</span>`
+      } else if(res[1].score >250){
+        return `<span class="badge badge-warning">Good</span>`
+      }else {
+        return `<span class="badge badge-danger">Warning</span>`
+      }
+    })()}<span class="badge badge-light">Beds: ${res[1].Beds}</span></h6>
+</li>
+  <li class="list-group-item list-group-item-warning">
+ <h6> ${res[2].Hospital} ${(() => {
+      if (res[2].score > 500) {
+        return `<span class="badge badge-success">Best</span>`
+      } else if(res[2].score >250){
+        return `<span class="badge badge-warning">Good</span>`
+      }else {
+        return `<span class="badge badge-danger">Warning</span>`
+      }
+    })()}<span class="badge badge-light">Beds: ${res[2].Beds}</span></h6>
+</li>
+  <li class="list-group-item list-group-item-warning">
+  <h6>${res[3].Hospital} ${(() => {
+      if (res[3].score > 500) {
+        return `<span class="badge badge-success">Best</span>`
+      } else if(res[3].score >250){
+        return `<span class="badge badge-warning">Good</span>`
+      }else {
+        return `<span class="badge badge-danger">Warning</span>`
+      }
+    })()}<span class="badge badge-light">Beds: ${res[3].Beds}</span></h6>
+
+</li>
+</ul>
+ 
+      
+      `);
+      }
+      },
+  error: function(err){
+  console.log("ajax2 error:"+err);
+  }
+      
+    
+  });
+});
+
+//////////
   $(function () {
   $("#hospital_search").autocomplete({
   source: function (request, response) {

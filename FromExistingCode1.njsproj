@@ -30,6 +30,11 @@
     </Content>
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
+    <Content Include="public\HT-PixTeller %281%29.png" />
+    <Content Include="public\HT-PixTeller %282%29.png" />
+    <Content Include="public\HT-PixTeller %283%29.png" />
+    <Content Include="public\phonefin.png" />
+    <Content Include="public\phonefin2.png" />
     <Content Include="README.md" />
     <Content Include="app.js" />
     <Content Include="config\auth.js" />

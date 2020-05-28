@@ -76,9 +76,9 @@ app.get('/autocomplete/', function (req, res) {
 });
 app.get('/search/', function (req, res) {
     var results = [];
-    console.log(typeof req.query.q);
+    //console.log(typeof req.query.q);
     
-    connection.query('SELECT  * FROM `hospitals` WHERE `Hospital` LIKE + "%' + ((req.query.q).split(","))[0] + '%"', function (err, rows, fields) {
+    connection.query('SELECT * FROM `hospitals` WHERE `Hospital` LIKE + "%' + ((req.query.q).split(","))[0] + '%"', function (err, rows, fields) {
         if (err) console.log(err);
         if (rows && rows.length && rows.length > 0) {
             console.log(rows);
@@ -87,6 +87,24 @@ app.get('/search/', function (req, res) {
                 console.log(rows[i]);
             }
            res.jsonp(results);
+
+        }
+
+    })
+});
+app.get('/suggestion/', function (req, res) {
+    var results = [];
+    //console.log(typeof req.query.q);
+
+    connection.query('SELECT * FROM `hospitals` WHERE `State` LIKE + "%' + ((req.query.q).split(","))[1] + '%" ORDER BY score DESC', function (err, rows, fields) {
+        if (err) console.log(err);
+        if (rows && rows.length && rows.length > 0) {
+            console.log(rows);
+            for (i = 0; i < rows.length; i++) {
+                results.push(rows[i]);
+                console.log(rows[i]);
+            }
+            res.jsonp(results);
 
         }
 
