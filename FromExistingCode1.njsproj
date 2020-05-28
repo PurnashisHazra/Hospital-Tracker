@@ -35,6 +35,9 @@
     <Content Include="public\HT-PixTeller %283%29.png" />
     <Content Include="public\phonefin.png" />
     <Content Include="public\phonefin2.png" />
+    <Content Include="public\StyleSheet1.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="README.md" />
     <Content Include="app.js" />
     <Content Include="config\auth.js" />

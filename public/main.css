@@ -1,0 +1,13 @@
+#explainer2 {
+   display: none; 
+}
+
+@media only screen and ( max-width: 360px ) {
+    #explainer1{
+        display:none;
+    }
+    #explainer2 {
+        display: block;
+        width: 100%;
+    }
+}
