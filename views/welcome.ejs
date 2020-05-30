@@ -20,16 +20,23 @@
     } 
     
   </style>
-   <?xml version="1.0" encoding="utf-8"?>
+   <?xml version="1.0" encoding="utf-8" ?>
 
 </head>
+<div class="alert alert-dark" role="alert">
+  <span class="badge badge-success">Best</span> score above 90/100, 
+  <span class="badge badge-warning">Good</span> score above 50/100 and
+  <span class="badge badge-danger">Warning</span>  score below 50/100
+   Score based on beds,ICUs,Vents and other factors
+</div>
 <div class="jumbotron jumbotron-fluid" style="margin-bottom: 0">
   <div class="container">
     <h4>The Hospital Search Engine</h4>
-      <h6>Tracking Healthcare</h6>
+      <h6><i class="fa fa-heartbeat" aria-hidden="true"></i>
+ Tracking Healthcare</h6>
      <div class="ui-widget" style="z-index:9999">
  <form action="/search" method="POST" class="form-inline my-2 my-lg-0" id="chutiya" style="width:90%;display:flex;flex-direction: row;flex-flow:row;">
-      <input style="width:90%" class="form-control mr-sm-2" id="hospital_search" type="search" placeholder="Search Hospital" aria-label="Search"/>
+      <input style="width:90%" class="form-control mr-sm-2" id="hospital_search" type="search" placeholder="Search Hospital or City..." aria-label="Search"/>
       <button  id="bakwas" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
  </form>  
  
