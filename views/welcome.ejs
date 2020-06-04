@@ -24,9 +24,9 @@
 
 </head>
 <div class="alert alert-dark" role="alert">
-  <span class="badge badge-success">Best</span> score above 90/100, 
-  <span class="badge badge-warning">Good</span> score above 50/100 and
-  <span class="badge badge-danger">Warning</span>  score below 50/100
+  <span class="badge badge-success">5★</span> score above 90/100, 
+  <span class="badge badge-warning">3★</span> score above 50/100 and
+  <span class="badge badge-danger">2★</span>  score below 50/100
    Score based on beds,ICUs,Vents and other factors
 </div>
 <div class="jumbotron jumbotron-fluid" style="margin-bottom: 0">
@@ -37,7 +37,8 @@
      <div class="ui-widget" style="z-index:9999">
  <form action="/search" method="POST" class="form-inline my-2 my-lg-0" id="chutiya" style="width:90%;display:flex;flex-direction: row;flex-flow:row;">
       <input style="width:90%" class="form-control mr-sm-2" id="hospital_search" type="search" placeholder="Search Hospital or City..." aria-label="Search"/>
-      <button  id="bakwas" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <button  id="bakwas" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i>
+</button>
  </form>  
  
      </div>
@@ -134,11 +135,11 @@ url="/rectify/";
     <h5 id="hospital-rectify" class="card-title">${res[0].Hospital}<span>
      ${(() => {
       if (res[0].score > 500) {
-        return `<span class="badge badge-success">Best</span>`
+        return `<span class="badge badge-success">5★</span>`
       } else if(res[0].score >250){
-        return `<span class="badge badge-warning">Good</span>`
+        return `<span class="badge badge-warning">3★</span>`
       }else {
-        return `<span class="badge badge-danger">Warning</span>`
+        return `<span class="badge badge-danger">2★</span>`
       }
     })()}
   </span>
@@ -211,44 +212,44 @@ $('#bakwas').click(function(ev){
   <li class="list-group-item list-group-item-success">
  <h6> ${res[0].Hospital} ${(() => {
       if (res[0].score > 500) {
-        return `<span class="badge badge-success">Best</span>`
+        return `<span class="badge badge-success">5★</span>`
       } else if(res[0].score >250){
-        return `<span class="badge badge-warning">Good</span>`
+        return `<span class="badge badge-warning">3★</span>`
       }else {
-        return `<span class="badge badge-danger">Warning</span>`
+        return `<span class="badge badge-danger">2★</span>`
       }
     })()}<span class="badge badge-light">Beds: ${res[0].Beds}</span></h6>
 </li>
   <li class="list-group-item list-group-item-success">
   <h6>${res[1].Hospital} ${(() => {
       if (res[1].score > 500) {
-        return `<span class="badge badge-success">Best</span>`
+        return `<span class="badge badge-success">5★</span>`
       } else if(res[1].score >250){
-        return `<span class="badge badge-warning">Good</span>`
+        return `<span class="badge badge-warning">3★</span>`
       }else {
-        return `<span class="badge badge-danger">Warning</span>`
+        return `<span class="badge badge-danger">2★</span>`
       }
     })()}<span class="badge badge-light">Beds: ${res[1].Beds}</span></h6>
 </li>
   <li class="list-group-item list-group-item-warning">
  <h6> ${res[2].Hospital} ${(() => {
       if (res[2].score > 500) {
-        return `<span class="badge badge-success">Best</span>`
+        return `<span class="badge badge-success">5★</span>`
       } else if(res[2].score >250){
-        return `<span class="badge badge-warning">Good</span>`
+        return `<span class="badge badge-warning">3★</span>`
       }else {
-        return `<span class="badge badge-danger">Warning</span>`
+        return `<span class="badge badge-danger">2★</span>`
       }
     })()}<span class="badge badge-light">Beds: ${res[2].Beds}</span></h6>
 </li>
   <li class="list-group-item list-group-item-warning">
   <h6>${res[3].Hospital} ${(() => {
       if (res[3].score > 500) {
-        return `<span class="badge badge-success">Best</span>`
+        return `<span class="badge badge-success">5★</span>`
       } else if(res[3].score >250){
-        return `<span class="badge badge-warning">Good</span>`
+        return `<span class="badge badge-warning">3★</span>`
       }else {
-        return `<span class="badge badge-danger">Warning</span>`
+        return `<span class="badge badge-danger">2★</span>`
       }
     })()}<span class="badge badge-light">Beds: ${res[3].Beds}</span></h6>
 
