@@ -35,24 +35,48 @@
       <h6><i class="fa fa-heartbeat" aria-hidden="true"></i>
  Tracking Healthcare</h6>
      <div class="ui-widget" style="z-index:9999">
- <form action="/search" method="POST" class="form-inline my-2 my-lg-0" id="chutiya" style="width:90%;display:flex;flex-direction: row;flex-flow:row;">
+ <form action="/search" method="GET" class="form-inline my-2 my-lg-0" id="chutiya" style="width:90%;display:flex;flex-direction: row;flex-flow:row;">
+   
       <input style="width:90%" class="form-control mr-sm-2" id="hospital_search" type="search" placeholder="Search Hospital or City..." aria-label="Search"/>
       <button  id="bakwas" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i>
 </button>
  </form>  
- 
      </div>
+    <div id="alrt"></div>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  
+<div><i class="material-icons">&#xe55f;</i>
+<span id="state">State</span>,<span id="city">City</span></div>
+  
+   <br><h5> OR</h5>
+   
+ 
+   <form action="/search-city" method="GET">
+     <div style="display:flex;flex-direction: row">
+   <select id="select_state" name="select_state" class="form-control form-control-sm" style="width:90%">
+  <option>Mumbai</option>
+  <option>Delhi</option>
+  <option>Pune</option>
+  <option>Nagpur</option>
+  <option>Karnataka</option>
+  <option>Tamil Nadu</option>
+   </select><button id="bakwas-2" class="btn btn-outline-success" style="padding-bottom:0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+       </div>
+</form>
   <p>Get information on your hospital - Location, Refusals, Beds and authentic user complaints</p>
     <small href="/about">Information here is either from recognized news or from authentic crowdsourced information</small>
   </div>
 </div>
 
 <div class="container-fluid" >
-<div id="info" >
+<div id="info" class="row" >
 
 </div>
 </div>
+
 <link rel="stylesheet" href="/main.css"/>
+
 <img  src="/HT-PixTeller (1).png"  alt="ss" class="card-img" id="explainer1"/>  
 
 <img  src="/HT-PixTeller (3).png"  alt="ss" id="explainer2"/>  
@@ -85,13 +109,24 @@ behaviour can be claimed by the people who practice law or are at a place of pow
         </div>
       </div>
     </div>
-
+<script>
+  //location/////////////////////////////////////////////////
+$.ajax({
+  url: "https://geolocation-db.com/jsonp",
+  jsonpCallback: "callback",
+  dataType: "jsonp",
+  success: function(location) {
+    $('#state').html(location.state);
+    $('#city').html(location.city);
+  }
+});
+</script>
 
 <script type="text/javascript">
    $(document).on('click','#rectify',function(ev)  {
   ev.preventDefault();
   var str1 = $("#hospital_search"). val();
-  //console.log(str1);
+  //rectify////////////////////////////////
 //console.log("rectify"); 
                                                                                                        
 url="/rectify/";
@@ -119,7 +154,7 @@ url="/rectify/";
   var str = $("#hospital_search").val();
   //console.log(str);
   $("#info").empty();
-  console.log("clicked");
+  //console.log("clicked");
   url="/search/";
   $.ajax({
     type: "GET",
@@ -128,7 +163,24 @@ url="/rectify/";
     dataType: "jsonp",
     success: function(res){
       //now we can access stuff off res
+      
+      if(str==""){
+       $('#alrt').append(`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Type a search query</strong> or try searching by your city/state...
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>`)
+      }
       if(str!=""){
+      if(res.length == 0){
+      $('#alrt').append(`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Data unavailable</strong> We are working on adding this data soon. Try searching other cities/hospitals
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>`)
+      }
       $('#info').append(`
       <div class="card " >
   <div class="card-body" style="padding: 2%">
@@ -184,11 +236,107 @@ url="/rectify/";
     
   });
 });
+/////////////
+$('#bakwas-2').click(function(ev){
+  ev.preventDefault();
+  var str = $("#select_state").val();
+  //console.log(str);
+  $("#info").empty();
+  //console.log("clicked");
+  url="/search-city/";
+  $.ajax({
+    type: "GET",
+    url:url,
+    data: {q: str},
+    dataType: "jsonp",
+    success: function(res){
+    console.log(res);
+      //now we can access stuff off res
+      if(res,length==0){
+      $('#alrt').append(`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Data Unavailable</strong>We are working on adding this data
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>`)  
+      }
+      if(str!=""){
+     const container = document.getElementById('info');
+
+      
+  res.forEach((result, idx) => {
+
+
+  // Construct card content
+  const content = `
+  
+   <div class="card col-xs-12 col-md-4 col-lg-4" >
+  <div class="card-body" style="padding: 2%">
+    <h5 id="hospital-rectify" class="card-title">${res[idx].Hospital}<span>
+     ${(() => {
+      if (res[0].score > 500) {
+        return `<span class="badge badge-success">5★</span>`
+      } else if(res[0].score >250){
+        return `<span class="badge badge-warning">3★</span>`
+      }else {
+        return `<span class="badge badge-danger">2★</span>`
+      }
+    })()}
+  </span>
+    <a class="btn btn-light" href='${"https://www.google.com/maps/search/?api=1&query="+res[0].Hospital+","+res[0].State}'><i class="fa fa-location-arrow" aria-hidden="true">Locate</i>
+</a>
+    </h5>  
+  <p>
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Refusal cases
+  </button>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+<p class="card-text"><small>${res[0].Refusals}<small></p>
+</div>
+</div>
+</p>
+  <ul class="list-group">
+  <li class="list-group-item list-group-item-info"><h5>Beds: ${res[0].Beds}</h5></li>
+  <li class="list-group-item list-group-item-info"><h5>Info:${res[0].info}</h5></li>
+  <li class="list-group-item list-group-item-info"><h5>ICU(s):${res[0].ICU}</h5></li>
+  <li class="list-group-item list-group-item-info"><h5>Ventilators:${res[0].Ventilators}</h5></li>
+  
+</ul>
+ 
+  
+<div id="suggestion" ></div>
+
+  <p><em>This information is extracted from the news and authenticated crowdsourced information</em></p>
+    <a  href="/users/login"  class="btn btn-primary">Rectify data?</a>
+    <a  href="/users/login"  class="btn btn-success">Submit a Problem</a>
+
+  </div>
+</div>
+   
+  `;
+
+  // Append newyly created card element to the container
+  container.innerHTML += content;
+})
+      }//end if str!=""
+      },
+  error: function(err){
+$('#alrt').append(`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Check your connection</strong>Please Reload
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>`)  }
+      
+    
+  });
+});
 
 /////////
 $('#bakwas').click(function(ev){
   ev.preventDefault();
-  alert("Not available or non-public details are put as ZERO(0). example: ICU(s):0, This doesn't necessarily mean there are no ICUs");
+  //alert("Not available or non-public details are put as ZERO(0). example: ICU(s):0, This doesn't necessarily mean there are no ICUs");
   var str = $("#hospital_search").val();
   //console.log(str);
   $("#suggestion").empty();

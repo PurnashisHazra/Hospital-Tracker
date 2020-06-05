@@ -86,8 +86,32 @@ app.get('/search/', function (req, res) {
                 results.push(rows[i]);
                 console.log(rows[i]);
             }
-           res.jsonp(results);
+            res.jsonp(results);
 
+        } else {
+            res.jsonp(results);
+        }
+
+    })
+});
+app.get('/search-city/', function (req, res) {
+    var results = [];
+    const { select_state } = req.body;
+
+    
+
+    connection.query('SELECT * FROM `hospitals` WHERE `State` LIKE + "%' + req.query.q + '%" ORDER BY score DESC', function (err, rows, fields) {
+        if (err) console.log(err);
+        if (rows && rows.length && rows.length >= 0) {
+            console.log(rows);
+            for (i = 0; i < rows.length; i++) {
+                results.push(rows[i]);
+                console.log(rows[i]);
+            }
+            res.jsonp(results);
+
+        } else {
+            res.jsonp(results);
         }
 
     })
