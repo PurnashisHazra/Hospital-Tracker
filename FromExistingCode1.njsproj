@@ -38,6 +38,7 @@
     <Content Include="public\StyleSheet1.css">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="public\website2.png" />
     <Content Include="README.md" />
     <Content Include="app.js" />
     <Content Include="config\auth.js" />
