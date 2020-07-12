@@ -239,6 +239,18 @@ h1 { font-size: 1.5em; margin: 10px; }
               <option>Related or Other</option>
             </select>
           </div>
+           <div class="form-group">
+            <label for="pselect" type="required">Category of Problem:</label>
+            <select class="form-control" id="pselect" name="pselect" value="<%= typeof pselect != 'undefined' ? pselect : '' %>">
+              <option>Overcharging</option>
+              <option>No Ventilator</option>
+                            <option>No ICU</option>
+                         <option>Admitted but unattended</option>
+                            <option>Lack of hygiene</option>
+                <option>Other problem...</option>
+
+            </select>
+          </div>
 
           <div class="form-group">
             <label for="pdesc">Problem Description</label>
