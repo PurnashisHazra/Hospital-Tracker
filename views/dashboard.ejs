@@ -26,6 +26,92 @@ behaviour can be claimed by the people who practice law or are at a place of pow
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
 </head>
 <!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Feedback</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="form-group">
+    <label for="exampleInputEmail1">Hospital Name</label>
+    <input type="email" class="form-control" id="Hospital_name" aria-describedby="emailHelp">
+    <small id="emailHelp" class="form-text text-muted"></small>
+  </div>
+        <div class="form-group">
+    <label for="exampleInputEmail1">Description</label>
+    <input type="email" class="form-control" id="description" aria-describedby="emailHelp">
+  </div>
+       <h1>Rate the Hospital</h1>
+<fieldset class="rating">
+    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="ok - 3.5 stars"></label>
+    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="OK - 3 stars"></label>
+    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title=" bad - 2.5 stars"></label>
+    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="bad - 2 stars"></label>
+    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="ok - 1.5 stars"></label>
+    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="very bad - 1 star"></label>
+    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="very bad - 0.5 stars"></label>
+</fieldset>
+      <style>
+        @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+      </style>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -64,9 +150,14 @@ behaviour can be claimed by the people who practice law or are at a place of pow
   <div class="card">
       <div class="card-body">
         <h5 class="card-title">Patient</h5>
-        <p class="card-text">Proceed to the portal</p>
+        <p class="card-text">Proceed to the portal to report a problem or give us a feedback of the hospital.</p>
         <p class="card-text">
-          <button type="button" class="btn btn-success">Proceed</button>
+          <div id="list-example" class="list-group">
+  <a type="button" class="btn btn-success" href="#list-item-1">Portal</a>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+  Feedback</button>
+          </div>
+          
 
         </p>
       </div>
@@ -93,30 +184,41 @@ behaviour can be claimed by the people who practice law or are at a place of pow
     </div>
 </div>
   </div>
+
+
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
+    <h6>Search by State/City:</h6>
+  
+   <div style="display:flex;flex-direction: row">
+   <select id="select_state" name="select_state" class="form-control form-control-sm" style="width:90%">
+  <option>Mumbai</option>
+  <option>Delhi</option>
+  <option>Pune</option>
+  <option>Nagpur</option>
+  <option>Karnataka</option>
+  <option>Tamil Nadu</option>
+  </select><button id="bakwas-2" class="btn btn-outline-success" style="padding-bottom:0" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+  </div>
+
     <div class="ui-widget" style="z-index:9999">
       <form action="/search" method="POST" class="form-inline my-2 my-lg-0" id="chutiya" style="width:90%;display:flex;flex-direction: row;flex-flow:row;">
         <input style="width:90%" class="form-control mr-sm-2" id="hospital_search" type="search" placeholder="Search Hospital" aria-label="Search"/>
         <button  id="bakwas" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
-    <p>Didn't find your hospital, report a problem to us...</p>
-    <small>Information here is either from recognized news or from authentic crowdsourced information</small>
-
-  </div>
+      </div>
 </div>
-<div id="info"   style="">
+ <div id="info"  class="row">
   
 </div>
-
 <h1>Portal</h1>
-<div class="accordion" id="accordionExample">
+<div class="accordion" id="accordionExample" data-spy="scroll" data-target="#list-example" data-offset="0" >
   <div class="card">
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          <h3><i class="fa fa-heartbeat" aria-hidden="true"></i>
+          <h3 id="list-item-1"><i class="fa fa-heartbeat" aria-hidden="true"></i>
           Patient</h3>
         </button>
       </h2>
@@ -324,7 +426,7 @@ behaviour can be claimed by the people who practice law or are at a place of pow
   data: {q: <%-JSON.stringify(user.email)%>},
   success: function(res){
   if(res.msg == 'Authenticated'){
-    console.log(res);
+   // console.log(res);
     $('#verification').empty();
     $('#verification').append(`
        <form method="GET" action="/dashboard/hospital_update">
@@ -363,15 +465,66 @@ behaviour can be claimed by the people who practice law or are at a place of pow
   }//endif
   
   if(res.msg == 'Authenticated2'){
-    console.log(res);
+    //console.log(res);
     $('#verification').empty();
     $('#verification').append(`
+    <h3>Municipal Officer Dashboard</h3>
        <div class="row">
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Complaints</h5>
-        <p class="card-text"></p>
+        <p class="card-text">
+          <div class="leaderboard">
+  <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/male3-128.png">
+  <p class="leaderboardname">Kashyap Mishra</p>
+  <a class="score">Bhatia Hospital:Overcharging</a><a href="#">Read more..</a>
+  </div>
+
+<div class="leaderboard">
+  <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-128.png">
+  <p class="leaderboardname">Bhoopendra</p>
+  <a class="score">Port Hospital:No ICUs</a><a href="#">Read more..</a>
+  </div>
+
+
+        <style>.leaderboard {
+  background: #ededed;
+  font-family: 'Source Sans Pro', sans-serif;
+  border-radius: 3px;
+  width: 100%;
+  max-width: 500px;
+  min-height: 60px;
+  padding: 5px;
+  margin: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+margin-left: auto;
+	margin-right: auto;
+}
+
+.leaderboard img {
+  width: 65px;
+  height: 65px;
+  float: right;
+  
+  border-radius: 50%;
+  border: 3px solid #fff;
+ box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+}
+
+.leaderboardname {
+  font-family: 'Zilla Slab', serif;
+  font-size: 20px;
+  text-decoration: bold;
+}
+
+.sendscore {
+ text-decoration: none;
+ color: #27ae60;
+  font-size: 20px;
+font-family: 'Source Sans Pro', sans-serif;
+}</style>
+        </p>
         <a href="#" class="btn btn-primary">Refresh</a>
       </div>
     </div>
@@ -380,12 +533,64 @@ behaviour can be claimed by the people who practice law or are at a place of pow
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Hospitals not updated</h5>
-        <p class="card-text"></p>
+        <p class="card-text">
+          <div class="leaderboard">
+ 
+  <p class="leaderboardname">Spandan Hospital</p>
+  <p class="score">Last updated: 1 week</p>
+  </div>
+
+<div class="leaderboard">
+  
+  <p class="leaderboardname">Breach Candy Hospital</p>
+  <p class="score">Last updated: 2 days</p>
+  </div>
+
+
+        <style>.leaderboard {
+  background: #ededed;
+  font-family: 'Source Sans Pro', sans-serif;
+  border-radius: 3px;
+  width: 100%;
+  max-width: 500px;
+  min-height: 60px;
+  padding: 5px;
+  margin: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+margin-left: auto;
+	margin-right: auto;
+}
+
+.leaderboard img {
+  width: 65px;
+  height: 65px;
+  float: right;
+  
+  border-radius: 50%;
+  border: 3px solid #fff;
+ box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+}
+
+.leaderboardname {
+  font-family: 'Zilla Slab', serif;
+  font-size: 20px;
+  text-decoration: bold;
+}
+
+.sendscore {
+ text-decoration: none;
+ color: #27ae60;
+  font-size: 20px;
+font-family: 'Source Sans Pro', sans-serif;
+}</style>
+        </p>
         <a href="#" class="btn btn-primary">Refresh</a>
       </div>
     </div>
   </div>
 </div>
+    
+  
     `);
   }
   
@@ -404,7 +609,7 @@ $(document).on('click', '.qty-minus', function () {
   $(document).on('click','#rectify',function(ev)  {
   ev.preventDefault();
   var str1 = $("#hospital_search"). val();
-  console.log(str1);
+  //console.log(str1);
   //console.log("rectify");
 
   url="/rectify/";
@@ -424,6 +629,97 @@ $(document).on('click', '.qty-minus', function () {
 
   });
   })
+
+
+  $('#bakwas-2').click(function(ev){
+  ev.preventDefault();
+  var str = $("#select_state").val();
+  //console.log(str);
+  $("#info").empty();
+  //console.log("clicked");
+  url="/dashboard/search-city/";
+  $.ajax({
+    type: "GET",
+    url:url,
+    data: {q: str},
+    dataType: "jsonp",
+    success: function(res){
+    console.log(res);
+      //now we can access stuff off res
+      if(res.length==0){
+      $('#alrt').append(`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Data Unavailable</strong>We are working on adding this data
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>`)  
+      }
+      if(str!=""){
+     const container = document.getElementById('info');
+
+      
+  res.forEach((result, idx) => {
+
+
+  // Construct card content
+  const content = `
+  
+   <div class="card col-xs-12 col-md-4 col-lg-4" >
+  <div class="card-body" style="padding: 2%">
+    <h5 id="hospital-rectify" class="card-title">${res[idx].Hospital}<span>
+     ${(() => {
+      if (res[idx].score > 500) {
+        return `<span class="badge badge-success">5★</span>`
+      } else if(res[idx].score >250){
+        return `<span class="badge badge-warning">3★</span>`
+      }else {
+        return `<span class="badge badge-danger">2★</span>`
+      }
+    })()}
+  </span>
+    <a class="btn btn-light" href='${"https://www.google.com/maps/search/?api=1&query="+res[idx].Hospital+","+res[idx].City}'><i class="fa fa-location-arrow" aria-hidden="true">Locate</i>
+</a>
+      
+    </h5>  
+  <p>
+
+</div>
+</p>
+  <ul class="list-group">
+  <li class="list-group-item list-group-item-light"><h5>Available Beds: ${res[idx].Beds}</h5></li>
+    <li class="list-group-item list-group-item-info"><h5>Total Beds: ${res[idx].TOTALBEDS}</h5></li>
+    <li class="list-group-item list-group-item-info"><h5>COVID-Beds: ${res[idx].COVIDBEDS}</h5></li>
+  <li class="list-group-item list-group-item-info"><h5>Info:${res[idx].info}</h5></li>
+  <li class="list-group-item list-group-item-info"><h5>ICU(s):${res[idx].ICU}</h5></li>
+  <li class="list-group-item list-group-item-info"><h5>Ventilators:${res[idx].Ventilators}</h5></li>
+    <li class="list-group-item list-group-item-warning">
+      <h5>COVID charges: ${res[idx].CHARGES}</h5>
+    </li>
+
+  </ul>
+ 
+
+  </div>
+</div>
+   
+  `;
+
+  // Append newyly created card element to the container
+  container.innerHTML += content;
+})
+      }//end if str!=""
+      },
+  error: function(err){
+$('#alrt').append(`<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Check your connection</strong>Please Reload
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>`)  }
+      
+    
+  });
+});
 
 
 

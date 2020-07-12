@@ -36,6 +36,26 @@ router.get('/dashboard', ensureAuthenticated, function (req, res) {
         user: req.user
     })
 });
+router.get('/dashboard/search-city/', function (req, res) {
+    var results = [];
+    console.log(req.query);
+    connection.query('SELECT * FROM `hospitals` WHERE `City` LIKE + "%' + req.query.q + '%" ORDER BY score DESC', function (err, rows, fields) {
+        if (err) console.log(err);
+        if (rows && rows.length && rows.length >= 0) {
+            console.log(rows);
+            for (i = 0; i < rows.length; i++) {
+                results.push(rows[i]);
+                //console.log(rows[i]);
+            }
+            
+            res.jsonp(results);
+
+        } else {
+            res.jsonp(results);
+        }
+
+    })
+});
 router.get('/dashboard/hospital', ensureAuthenticated, function (req, res) {
     res.render('hospital_dashboard')
 });
