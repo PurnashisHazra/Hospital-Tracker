@@ -16,7 +16,18 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
-  },
+    },
+    hospital: {
+        type: String,
+        default: ""
+    },
+    officer: {
+        type: String,
+        default: ""
+    },
+    officer_pass: {
+        type: String
+    },
     progress: {
         type: Number,
         default: 0

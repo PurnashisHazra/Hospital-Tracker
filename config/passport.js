@@ -1,13 +1,12 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 //var validator = require("email-validator");
-var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 
 // Load User model
 const User = require('../models/User');
 
 module.exports = function(passport) {
-  passport.use(
+  passport.use('login',
       new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
           
       // Match user

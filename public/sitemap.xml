@@ -32,3 +32,35 @@
     <priority>1.0</priority>
   </url>
 </urlset>
+
+User.findOne({ officer: name }).then(user => {
+if (user) {
+errors.push({ msg: 'Hospital already registered' });
+
+res.render('hospital_dashboard', {
+errors
+})
+} else {
+User.find({ email: req.user.email }, function (err, docs) {
+if (err) console.log(err);
+if (docs.length) {
+if (docs[0].officer == "") {
+//docs[0].hospital = hospital_name
+var update = User.findByIdAndUpdate(req.user.id, {
+officer: name,
+officer_pass:pass
+});
+update.exec(function (err, data) {
+if (err) throw err;
+
+res.render('dashboard', {
+user: req.user
+})
+});
+} else {
+res.redirect('dashboard');
+}
+}
+})
+}
+})

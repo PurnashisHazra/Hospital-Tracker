@@ -2,6 +2,7 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const passport = require('passport');
+
 const flash = require('connect-flash');
 const session = require('express-session');
 const app = express();
@@ -9,10 +10,10 @@ var cors = require('cors');
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-    host: 'sql9.freemysqlhosting.net',
-    user: 'sql9341600',
-    password: 'eriBREhXkF',
-    database: 'sql9341600'
+    host: 'sql12.freemysqlhosting.net',
+    user: 'sql12353688',
+    password: 'xrrP6lqtDA',
+    database: 'sql12353688'
 
 });
 
@@ -61,7 +62,7 @@ app.get('/autocomplete/', function (req, res) {
     var results = [];
     var regex = new RegExp(req.query.term, 'i');
 
-    connection.query('SELECT `Hospital`,`State` FROM `hospitals` WHERE `Hospital`  LIKE + "%' + req.query.term + '%" OR `State`  LIKE + "%' + req.query.term + '%" ', function (err, rows, fields) {
+    connection.query('SELECT * FROM `hospitals` WHERE `Hospital`  LIKE + "%' + req.query.term + '%" OR `City`  LIKE + "%' + req.query.term + '%" ', function (err, rows, fields) {
         if (err) throw err;
         if (rows && rows.length && rows.length>0){
             //console.log(rows);
@@ -96,11 +97,8 @@ app.get('/search/', function (req, res) {
 });
 app.get('/search-city/', function (req, res) {
     var results = [];
-    const { select_state } = req.body;
 
-    
-
-    connection.query('SELECT * FROM `hospitals` WHERE `State` LIKE + "%' + req.query.q + '%" ORDER BY score DESC', function (err, rows, fields) {
+    connection.query('SELECT * FROM `hospitals` WHERE `City` LIKE + "%' + req.query.q + '%" ORDER BY score DESC', function (err, rows, fields) {
         if (err) console.log(err);
         if (rows && rows.length && rows.length >= 0) {
             console.log(rows);
@@ -116,11 +114,33 @@ app.get('/search-city/', function (req, res) {
 
     })
 });
+app.get('/track', function (req, res) {
+    const { name, city, beds, icu, vents } = req.query;
+    connection.query('SELECT  * FROM `hospitals` WHERE `Hospital` = "' + req.query.track_this1 + '"', function (err, rows) {
+        if (err) console.log(err);
+        if (rows && rows.length && rows.length > 0) {
+            //console.log(rows[0]);
+            const t = rows[0].LAST_UPDATED;
+            const b = rows[0].Beds;
+            const i = rows[0].ICU;
+            const v = rows[0].Ventilators;
+          
+            res.render('track', {
+                Hospital: req.query.track_this1,
+                City: req.query.track_this2,
+                Beds:b,
+                ICU: i,
+                Ventilators: v
+            })
+        }
+    })
+    
+});
 app.get('/suggestion/', function (req, res) {
     var results = [];
     //console.log(typeof req.query.q);
 
-    connection.query('SELECT * FROM `hospitals` WHERE `State` LIKE + "%' + ((req.query.q).split(","))[1] + '%" ORDER BY score DESC', function (err, rows, fields) {
+    connection.query('SELECT * FROM `hospitals` WHERE `City` LIKE + "%' + ((req.query.q).split(","))[1] + '%" ORDER BY score DESC', function (err, rows, fields) {
         if (err) console.log(err);
         if (rows && rows.length && rows.length > 0) {
             console.log(rows);
@@ -142,6 +162,7 @@ app.get('/rectify/', function (req, res) {
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
 //Exress validatr
 //app.use(expressValidator())
 

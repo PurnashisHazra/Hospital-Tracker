@@ -3,12 +3,18 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 var request = require('request');
 const passport = require('passport');
+const passport2 = require('passport');
+
 var verifier = require('email-verify');
 var infoCodes = verifier.infoCodes;
 // Load DB
-
-
-// Load Hospital Model
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+    host: 'sql12.freemysqlhosting.net',
+    user: 'sql12353688',
+    password: 'xrrP6lqtDA',
+    database: 'sql12353688'
+});
 
 // Load User model
 const User = require('../models/User');
@@ -16,9 +22,12 @@ const { forwardAuthenticated } = require('../config/auth');
 //Email Validator
 //const { check, validationResult } = require('express-validator');// Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
+router.get('/hospital_login', forwardAuthenticated, (req, res) => res.render('hospital_login'));
 
 // Register Page
 router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
+router.get('/hospital_register', forwardAuthenticated, (req, res) => res.render('hospital_register'));
+
 var e = 0;
 var errors = [];
 
@@ -117,7 +126,7 @@ router.post('/register',(req, res) => {
                   'success_msg',
                   'You are now registered and can log in'
                 );
-                res.redirect('/users/login');
+                res.redirect('/users/hospital_login');
               })
               .catch(err => console.log(err));
           });
@@ -126,6 +135,8 @@ router.post('/register',(req, res) => {
     });
   }
 });
+
+
 
 // Login
 router.post('/login', (req, res, next) => {
@@ -152,14 +163,13 @@ router.post('/login', (req, res, next) => {
         req.session
         res.redirect('/users/login');
     } else {
-        passport.authenticate('local', {
+        passport.authenticate('login', {
             successRedirect: '/dashboard',
             failureRedirect: '/users/login',
             failureFlash: true
         })(req, res, next);
     }
 });
-
 // Logout
 
 router.get('/logout', (req, res) => {

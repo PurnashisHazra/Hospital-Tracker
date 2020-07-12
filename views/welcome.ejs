@@ -48,10 +48,9 @@
   
 <div><i class="material-icons">&#xe55f;</i>
 <span id="state">State</span>,<span id="city">City</span></div>
-  
    <br><h5> OR</h5>
    
-   <h6>Search by State:<h6>
+   <h6>Search by State/City:<h6>
    <form action="/search-city" method="GET">
      <div style="display:flex;flex-direction: row">
    <select id="select_state" name="select_state" class="form-control form-control-sm" style="width:90%">
@@ -195,8 +194,16 @@ url="/rectify/";
       }
     })()}
   </span>
-    <a class="btn btn-light" href='${"https://www.google.com/maps/search/?api=1&query="+res[0].Hospital+","+res[0].State}'><i class="fa fa-location-arrow" aria-hidden="true">Locate</i>
+    <a class="btn btn-light" href='${"https://www.google.com/maps/search/?api=1&query="+res[0].Hospital+","+res[0].City}'><i class="fa fa-location-arrow" aria-hidden="true">Locate</i>
 </a>
+      <form method="GET" action="/track">
+        <input type="hidden" name="track_this1" value="${res[0].Hospital}"></input>
+        <input type="hidden" name="track_this2" value="${res[0].City}"></input>
+        <input type="hidden" name="track_this3" value="${res[0].Beds}"></input>
+        <input type="hidden" name="track_this4" value="${res[0].ICU}"></input>
+        <input type="hidden" name="track_this" value="${res[0].Ventilators}"></input>
+        <button type="submit" class="btn btn-light">Track</button>
+      </form>
     </h5>  
   <p>
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -204,7 +211,6 @@ url="/rectify/";
   </button>
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
-<p class="card-text"><small>${res[0].Refusals}<small></p>
 </div>
 </div>
 </p>
@@ -274,40 +280,47 @@ $('#bakwas-2').click(function(ev){
   <div class="card-body" style="padding: 2%">
     <h5 id="hospital-rectify" class="card-title">${res[idx].Hospital}<span>
      ${(() => {
-      if (res[0].score > 500) {
+      if (res[idx].score > 500) {
         return `<span class="badge badge-success">5★</span>`
-      } else if(res[0].score >250){
+      } else if(res[idx].score >250){
         return `<span class="badge badge-warning">3★</span>`
       }else {
         return `<span class="badge badge-danger">2★</span>`
       }
     })()}
   </span>
-    <a class="btn btn-light" href='${"https://www.google.com/maps/search/?api=1&query="+res[0].Hospital+","+res[0].State}'><i class="fa fa-location-arrow" aria-hidden="true">Locate</i>
+    <a class="btn btn-light" href='${"https://www.google.com/maps/search/?api=1&query="+res[idx].Hospital+","+res[idx].City}'><i class="fa fa-location-arrow" aria-hidden="true">Locate</i>
 </a>
+      <form method="GET" action="/track">
+        <input type="hidden" name="track_this1" value="${res[idx].Hospital}"></input>
+        <input type="hidden" name="track_this2" value="${res[idx].City}"></input>
+        <input type="hidden" name="track_this3" value="${res[idx].Beds}"></input>
+        <input type="hidden" name="track_this4" value="${res[idx].ICU}"></input>
+        <input type="hidden" name="track_this" value="${res[idx].Ventilators}"></input>
+        <button type="submit" class="btn btn-light">Track</button>
+      </form> 
     </h5>  
   <p>
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Refusal cases
-  </button>
-<div class="collapse" id="collapseExample">
-  <div class="card card-body">
-<p class="card-text"><small>${res[0].Refusals}<small></p>
-</div>
+
 </div>
 </p>
   <ul class="list-group">
-  <li class="list-group-item list-group-item-info"><h5>Beds: ${res[0].Beds}</h5></li>
-  <li class="list-group-item list-group-item-info"><h5>Info:${res[0].info}</h5></li>
-  <li class="list-group-item list-group-item-info"><h5>ICU(s):${res[0].ICU}</h5></li>
-  <li class="list-group-item list-group-item-info"><h5>Ventilators:${res[0].Ventilators}</h5></li>
-  
-</ul>
+  <li class="list-group-item list-group-item-light"><h5>Available Beds: ${res[idx].Beds}</h5></li>
+    <li class="list-group-item list-group-item-info"><h5>Total Beds: ${res[idx].TOTALBEDS}</h5></li>
+    <li class="list-group-item list-group-item-info"><h5>COVID-Beds: ${res[idx].COVIDBEDS}</h5></li>
+  <li class="list-group-item list-group-item-info"><h5>Info:${res[idx].info}</h5></li>
+  <li class="list-group-item list-group-item-info"><h5>ICU(s):${res[idx].ICU}</h5></li>
+  <li class="list-group-item list-group-item-info"><h5>Ventilators:${res[idx].Ventilators}</h5></li>
+    <li class="list-group-item list-group-item-warning">
+      <h5>COVID charges: ${res[idx].CHARGES}</h5>
+    </li>
+
+  </ul>
  
   
 <div id="suggestion" ></div>
 
-  <p><em>This information is extracted from the news and authenticated crowdsourced information</em></p>
+  
     <a  href="/users/login"  class="btn btn-primary">Rectify data?</a>
     <a  href="/users/login"  class="btn btn-success">Submit a Problem</a>
 
@@ -428,7 +441,8 @@ $('#bakwas').click(function(ev){
   var dataArray = [];
 
                     for(var i in data){
-                        dataArray.push(data[i].Hospital+","+data[i].State);}
+                    
+                        dataArray.push(data[i].Hospital+","+data[i].City);}
   response(dataArray);
   //console.log(data);
   },

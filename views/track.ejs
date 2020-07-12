@@ -1,0 +1,37 @@
+   <div class="card" >
+  <div class="card-body" style="padding: 2%">
+    <h5 id="hospital-rectify" class="card-title"><%- Hospital%></h5>
+    
+    <a class="btn btn-light" href='${"https://www.google.com/maps/search/?api=1&query="+res.Hospital+","+res.City}'><i class="fa fa-location-arrow" aria-hidden="true">Locate</i>
+</a><form method="GET" action="/track">
+         <ul class="list-group">
+  <li class="list-group-item list-group-item-info"><h5>Beds: <%- Beds%></h5></li>
+  <li class="list-group-item list-group-item-info"><h5>Info:<%- City%></h5></li>
+  <li class="list-group-item list-group-item-info"><h5>ICU(s):<%- ICU%></h5></li>
+  <li class="list-group-item list-group-item-info"><h5>Ventilators:<%- Ventilators%></h5></li>
+  
+</ul>
+        <input type="hidden" name="track_this1" value="<%- Hospital%>"></input>
+        <input type="hidden" name="track_this2" value="<%- City%>"></input>
+        <input type="hidden" name="track_this3" value="<%- Beds%>"></input>
+        <input type="hidden" name="track_this4" value="<%- ICU%>"></input>
+        <input type="hidden" name="track_this" value="<%- Ventilators%>"></input>
+        <button type="submit" id="refresh" class="btn btn-light">Refresh</button>
+      </form>
+      
+    </h5>  
+  <p>
+
+</div>
+</p>
+
+  <p><em>This information is extracted from the news and authenticated crowdsourced information</em></p>
+    <a  href="/users/login"  class="btn btn-primary">Rectify data?</a>
+    <a  href="/users/login"  class="btn btn-success">Submit a Problem</a>
+
+  </div>
+</div>
+  <script>
+  setInterval(function () {document.getElementById("refresh").click();}, 5000);
+
+  </script>

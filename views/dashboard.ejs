@@ -54,11 +54,45 @@ behaviour can be claimed by the people who practice law or are at a place of pow
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <a id="complaint_status" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Complaint status</a>
-      <a class="dropdown-item" href="users/logout">Logout</a>
+      <a class="dropdown-item" href="/users/logout">Logout</a>
     </div>
   </div>
 
 </div>
+<div id="verification">
+<div class="card-deck" >
+  <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Patient</h5>
+        <p class="card-text">Proceed to the portal</p>
+        <p class="card-text">
+          <button type="button" class="btn btn-success">Proceed</button>
+
+        </p>
+      </div>
+    </div>
+  <div class="card">
+ 
+      <div class="card-body">
+        <h5 class="card-title">Hospital</h5>
+        <p class="card-text">You need to verify as a hospital authority.</p>
+        <p class="card-text">
+          <a href="dashboard/hospital"><button  type="button" class="btn btn-success">Proceed</button></a>
+
+        </p>
+      </div>
+    </div>
+  <div class="card">  
+      <div class="card-body">
+        <h5 class="card-title">Municipal Executive</h5>
+        <p class="card-text">Click here to proceed to verification</p>
+        <p class="card-text">
+          <a href="dashboard/officer"><button  type="button" class="btn btn-success">Proceed</button></a>
+        </p>
+      </div>
+    </div>
+</div>
+  </div>
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <div class="ui-widget" style="z-index:9999">
@@ -76,6 +110,7 @@ behaviour can be claimed by the people who practice law or are at a place of pow
   
 </div>
 
+<h1>Portal</h1>
 <div class="accordion" id="accordionExample">
   <div class="card">
     <div class="card-header" id="headingOne">
@@ -281,6 +316,91 @@ behaviour can be claimed by the people who practice law or are at a place of pow
       </div>
     </div>
 <script type="text/javascript">
+    $(function(){
+  url="/dashboard/check_authentication/";
+  $.ajax({
+  type: "GET",
+  url:url,
+  data: {q: <%-JSON.stringify(user.email)%>},
+  success: function(res){
+  if(res.msg == 'Authenticated'){
+    console.log(res);
+    $('#verification').empty();
+    $('#verification').append(`
+       <form method="GET" action="/dashboard/hospital_update">
+
+    <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+    <h1 class="display-4">Dashboard</h1>
+    <small>Last update: ${JSON.stringify(res.time)} </small>
+    <div>
+    <p>BEDS:</p>
+   <button type="button" value="-" class="qty-minus">-</button>
+   <input type="number" id="beds" name="beds" value='${res.beds}' class="qty"></input>
+   <button type="button" value="+" class="qty-plus">+</button>
+</div>
+<div>
+    <p>ICUs:</p> 
+   <button type="button" value="-" class="qty-minus">-</button>
+   <input type="number"  value='${res.ICU}' id="icu" name="icu" class="qty"></input>
+   <button type="button" value="+" class="qty-plus">+</button>
+</div>
+<div>
+    <p>Ventilators:</p> 
+   <button type="button" value="-" class="qty-minus">-</button>
+   <input type="number" value="1" id="vent" name="vents" class="qty"></input>
+   <button type="button" value="+" class="qty-plus">+</button>
+</div>
+  </div> 
+        <hr class="my-4">
+      
+      <button type="submit" class="btn btn-success btn-block">Update</button>
+</div>
+
+   </form>
+   
+    `);
+  }//endif
+  
+  if(res.msg == 'Authenticated2'){
+    console.log(res);
+    $('#verification').empty();
+    $('#verification').append(`
+       <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Complaints</h5>
+        <p class="card-text"></p>
+        <a href="#" class="btn btn-primary">Refresh</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Hospitals not updated</h5>
+        <p class="card-text"></p>
+        <a href="#" class="btn btn-primary">Refresh</a>
+      </div>
+    </div>
+  </div>
+</div>
+    `);
+  }
+  
+  },
+  error: function(err){
+  console.log("authentication error:"+err);
+  }
+  });
+  });//end function
+$(document).on('click', '.qty-plus', function () {
+   $(this).prev().val(+$(this).prev().val() + 1);
+});
+$(document).on('click', '.qty-minus', function () {
+   if ($(this).next().val() > 0) $(this).next().val(+$(this).next().val() - 1);
+});
   $(document).on('click','#rectify',function(ev)  {
   ev.preventDefault();
   var str1 = $("#hospital_search"). val();
@@ -373,7 +493,7 @@ behaviour can be claimed by the people who practice law or are at a place of pow
   var dataArray = [];
 
   for(var i in data){
-  dataArray.push(data[i].Hospital+","+data[i].State);}
+  dataArray.push(data[i].Hospital+","+data[i].City);}
   response(dataArray);
   //console.log(data);
   },
