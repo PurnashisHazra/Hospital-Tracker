@@ -25,6 +25,11 @@ behaviour can be claimed by the people who practice law or are at a place of pow
 
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
 </head>
+<style>
+  body{
+margin:0px;  
+}
+</style>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -244,10 +249,10 @@ h1 { font-size: 1.5em; margin: 10px; }
             <select class="form-control" id="pselect" name="pselect" value="<%= typeof pselect != 'undefined' ? pselect : '' %>">
               <option>Overcharging</option>
               <option>No Ventilator</option>
-                            <option>No ICU</option>
-                         <option>Admitted but unattended</option>
-                            <option>Lack of hygiene</option>
-                <option>Other problem...</option>
+              <option>No ICU</option>
+              <option>Admitted but unattended</option>
+              <option>Lack of hygiene</option>
+              <option>Other problem...</option>
 
             </select>
           </div>
@@ -448,9 +453,9 @@ h1 { font-size: 1.5em; margin: 10px; }
     <h1 class="display-4">Dashboard</h1>
     <small>Last update: ${JSON.stringify(res.time)} </small>
     <div>
-    <p>BEDS:</p>
+    <p>Beds:</p>
    <button type="button" value="-" class="qty-minus">-</button>
-   <input type="number" id="beds" name="beds" value='${res.beds}' class="qty"></input>
+   <input  type="number" id="beds" name="beds" value='${res.beds}' class="qty"></input>
    <button type="button" value="+" class="qty-plus">+</button>
 </div>
 <div>
@@ -466,6 +471,35 @@ h1 { font-size: 1.5em; margin: 10px; }
    <button type="button" value="+" class="qty-plus">+</button>
 </div>
   </div> 
+   
+  <div class="row">
+   
+    <div class="col" style="padding:5%">
+      <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">+91</span>
+  </div>
+  <input type="text" class="form-control" placeholder="patient mobile number" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+
+      <input style="width:30%;" type="text" class="form-control" placeholder="Age">
+       <label for="inputState">Patient State</label>
+      <select id="inputState" class="form-control">
+        <option selected>Critical</option>
+        <option>Mild</option>
+      </select>
+     <input class="" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Admitting
+      </label>
+        <input class="" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Discharging
+      </label>
+    </div>
+  </div>
+</form>
         <hr class="my-4">
       
       <button type="submit" class="btn btn-success btn-block">Update</button>
@@ -485,7 +519,7 @@ h1 { font-size: 1.5em; margin: 10px; }
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Complaints</h5>
+        <h5 class="card-title">Reports</h5>
         <p class="card-text">
           <div class="leaderboard">
   <img src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/male3-128.png">
@@ -819,3 +853,8 @@ $('#alrt').append(`<div class="alert alert-warning alert-dismissible fade show" 
   });//autoc
   });//func
 </script>
+<style>
+  body{
+margin:0px;  
+}
+</style>

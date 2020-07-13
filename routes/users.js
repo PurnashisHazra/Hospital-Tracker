@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 var request = require('request');
 const passport = require('passport');
-const passport2 = require('passport');
+
 
 var verifier = require('email-verify');
 var infoCodes = verifier.infoCodes;
@@ -22,11 +22,11 @@ const { forwardAuthenticated } = require('../config/auth');
 //Email Validator
 //const { check, validationResult } = require('express-validator');// Login Page
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
-router.get('/hospital_login', forwardAuthenticated, (req, res) => res.render('hospital_login'));
+
 
 // Register Page
 router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
-router.get('/hospital_register', forwardAuthenticated, (req, res) => res.render('hospital_register'));
+
 
 var e = 0;
 var errors = [];
@@ -126,7 +126,7 @@ router.post('/register',(req, res) => {
                   'success_msg',
                   'You are now registered and can log in'
                 );
-                res.redirect('/users/hospital_login');
+                res.redirect('/users/login');
               })
               .catch(err => console.log(err));
           });
