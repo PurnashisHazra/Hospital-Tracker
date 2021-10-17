@@ -1,8 +1,8 @@
 # Hospital Tracker
 
-[![CI](https://github.com/fastify/fastify/workflows/ci/badge.svg)](https://github.com/fastify/fastify/actions/workflows/ci.yml)
-[![Web SIte](https://github.com/fastify/fastify/workflows/website/badge.svg)](https://github.com/fastify/fastify/actions/workflows/website.yml)
-[![Coverage Status](https://coveralls.io/repos/github/fastify/fastify/badge.svg?branch=main)](https://coveralls.io/github/fastify/fastify?branch=main)
+[![CI](https://github.com/fastify/fastify/workflows/ci/badge.svg)](https://github.com/LobRockyl/Hospital-Tracker)
+[![Web SIte](https://github.com/fastify/fastify/workflows/website/badge.svg)](https://github.com/LobRockyl/Hospital-Tracker)
+[![Coverage Status](https://coveralls.io/repos/github/fastify/fastify/badge.svg?branch=main)](https://github.com/LobRockyl/Hospital-Tracker)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://standardjs.com/)
 
 Hospital Tracker enables people to see live realtime hospital availability and details as well as the hospitals to be able to update the data live. 
